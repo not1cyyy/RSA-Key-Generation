@@ -24,39 +24,39 @@ func main() {
 
     // now dump the private key to a file
     var privateKeyBytes []byte = x509.MarshalPKCS1PrivateKey(privatekey)
-    privateKeyBlock := &pem.Block{
+    PRIVblock := &pem.Block{
         Type:  "RSA PRIVATE KEY",
         Bytes: privateKeyBytes,
     }
-    privatePem, err := os.Create("private.pem")
+    PEMPriv, err := os.Create("private.pem")
     if err != nil {
         fmt.Printf("error when creating the file private.pem: %s \n", err)
         os.Exit(1)
     }
-    err = pem.Encode(privatePem, privateKeyBlock)
+    err = pem.Encode(PEMPriv, PRIVblock)
     if err != nil {
         fmt.Printf("error when encoding the file private.pem: %s \n", err)
         os.Exit(1)
     }
-
     // now we dump the public key to a file
     publicKeyBytes, err := x509.MarshalPKIXPublicKey(publickey)
     if err != nil {
         fmt.Printf("error when dumping the public key: %s \n", err)
         os.Exit(1)
     }
-    publicKeyBlock := &pem.Block{
+    PUBblock := &pem.Block{
         Type:  "PUBLIC KEY",
         Bytes: publicKeyBytes,
     }
-    publicPem, err := os.Create("public.pem")
+    PEMPub, err := os.Create("public.pem")
     if err != nil {
         fmt.Printf("error when creating the file public.pem: %s \n", err)
         os.Exit(1)
     }
-    err = pem.Encode(publicPem, publicKeyBlock)
+    err = pem.Encode(PEMPub, PUBblock)
     if err != nil {
         fmt.Printf("error when encoding the file public.pem: %s \n", err)
         os.Exit(1)
     }
+fmt.Printf("Saved output to private.pem and public.pem \n")
 }
