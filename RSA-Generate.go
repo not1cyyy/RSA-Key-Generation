@@ -63,13 +63,17 @@ func generate(length int) {
 fmt.Printf("Saved output to private.pem and public.pem \n")
 }
 func main(){
+
 var choice int
+
 fmt.Println("Here are the available key lengths : ")
 fmt.Println("1 -> 512 bits")
 fmt.Println("2 -> 1024 bits")
 fmt.Println("3 -> 2048 bits")
 fmt.Print("Enter the number corresponding to the desired key length : ")
+
 fmt.Scanln(&choice)
+
 switch choice {
 case 1:
     generate(512);
